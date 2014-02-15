@@ -35,13 +35,13 @@ class Bitvendr < Sinatra::Base
   			response = coinbase.send_money note, btc_to_send
 
   			if response.success?
-  				success amount, id
+  				success btc_to_send, id
   				coinbase.buy!(btc * 0.95)
   			else
-  				error amount, id
+  				error btc_to_send, id
   			end
   		else
-  			error amount, id
+  			error btc_to_send, id
   		end
   	end
   end
