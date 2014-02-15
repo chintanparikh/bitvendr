@@ -1,3 +1,8 @@
+require 'restclient'
+require "coinbase"
+require 'json'
+require 'venmo'
+
 module Sinatra
 	module BitvendrHelpers
 		class Venmo
