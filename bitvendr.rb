@@ -8,8 +8,11 @@ require './sinatra/bitvendr_helpers'
 
 class Bitvendr < Sinatra::Base
   helpers Sinatra::BitvendrHelpers
-
   post '/process_payment' do
+  	200
+  end
+
+  post '/process' do
   	# Pull in response
   	# Get amount, convert to btc at current rate
   	# Get either bitcoin wallet address or coinbase email address
@@ -57,7 +60,7 @@ class Bitvendr < Sinatra::Base
 	end
   end
 
-  get '/process_payment' do
+  get '/process' do
   	params[:venmo_challenge]
   end
 end
