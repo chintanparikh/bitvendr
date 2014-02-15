@@ -22,14 +22,14 @@ class Bitvendr < Sinatra::Base
   	note = params["data"]["note"]
   	id = params["data"]["actor"]["id"]
   	payment_id = params["data"]["id"]
-  	amount = Venmo.get_amount(payment_id) 
+  	amount = Sinatra::BitvendrHelpers::Venmo.get_amount(payment_id) 
 
   	RestClient.post "http://oysterapp.herokuapp.com/eYKnLi9hRJp5sWGqjbeVjIbyIDsil3bvI-4Pv13TwZo", {note: note, id: id, payment_id: payment_id, amount: amount}
 
   	if params["data"]["action"] == "pay"
-  		coinbase = Coinbase.auth
+  		coinbase = Sinatra::BitvendrHelpers::Coinbase.auth
 
-  		btc = amount / Coinbase.price
+  		btc = amount / Sinatra::BitvendrHelpers::Coinbase.price
   		if coinbase.balance.to_f > btc
   			btc_to_send = btc * 0.90 #fucktheuser
   			response = coinbase.send_money note, btc_to_send
