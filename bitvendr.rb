@@ -50,6 +50,7 @@ class Bitvendr < Sinatra::Base
 		puts amount
 		puts btc
 		puts btc_to_send
+		200
 	rescue Exception => msg
 	  	puts msg
 	  	200
