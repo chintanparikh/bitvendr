@@ -37,11 +37,11 @@ module Sinatra
 			end
 		end
 
-		def success id
+		def success amount, id
 			Venmo::pay id, "Success! #{amount} btc is on the way. It can take up to an hour - email support@bitvendr.com for help.", 0.01
 		end
 
-		def error id
+		def error amount, id
 			Venmo::pay id, "Sorry, something went wrong! Your money has been returned. Email support@bitvendr.com for help.", 0.01
 		end
 	end
