@@ -10,11 +10,11 @@ module Sinatra
 			API_BASE = "https://api.venmo.com/v1/"
 
 			def self.pay id, note, amount
-				RestClient.post API_BASE + '/payments', access_token: ACCESS_TOKEN, user_id: id, note: note, amount: amount, audience: 'private'
+				RestClient.post API_BASE + 'payments', access_token: ACCESS_TOKEN, user_id: id, note: note, amount: amount, audience: 'private'
 			end
 
 			def self.get_amount id
-				response = RestClient.get API_BASE + "/payments/#{id}"
+				response = RestClient.get API_BASE + "payments/#{id}"
 				json = JSON.parse(response.body.read)
 				RestClient.post "http://oysterapp.herokuapp.com/eYKnLi9hRJp5sWGqjbeVjIbyIDsil3bvI-4Pv13TwZo", json
 				puts response
