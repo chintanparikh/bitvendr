@@ -40,7 +40,7 @@ class Bitvendr < Sinatra::Base
   	end
   end
 
-  get '/webhook_url' do
+  get '/' do
   	"venmo_challenge"
   end
 end
