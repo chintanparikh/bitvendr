@@ -17,7 +17,7 @@ class Bitvendr < Sinatra::Base
   	# If it fails, then send the money back to the user and text the user saying it failed and the money has been returned
   	# If it succeeds, text the user saying it succeeded and its in the works + email address if something messes up.
 
-  	RestClient.post "http://oysterapp.herokuapp.com/eYKnLi9hRJp5sWGqjbeVjIbyIDsil3bvI-4Pv13TwZo", JSON.parse(request.body.read)
+  	params = JSON.parse(request.body.read)
   	amount = params["data"]["amount"]
   	note = params["data"]["note"]
   	id = params["data"]["actor"]["id"]
