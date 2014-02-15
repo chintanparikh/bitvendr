@@ -33,7 +33,7 @@ module Sinatra
 			end
 
 			def self.price
-				JSON.parse(RestClient.get("https://coinbase.com/api/v1/currencies/exchange_rates").response.body)["btc_to_usd"].to_f
+				JSON.parse(RestClient.get("https://coinbase.com/api/v1/currencies/exchange_rates").body)["btc_to_usd"].to_f
 			end
 		end
 
