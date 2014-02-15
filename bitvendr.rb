@@ -40,7 +40,7 @@ class Bitvendr < Sinatra::Base
   	end
   end
 
-  get '/:venmo_challenge' do
+  get '/' do
   	params[:venmo_challenge]
   end
 end
