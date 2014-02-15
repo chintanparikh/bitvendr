@@ -26,6 +26,9 @@ class Bitvendr < Sinatra::Base
 	  	id = params["data"]["actor"]["id"]
 	  	payment_id = params["data"]["id"]
 	  	amount = Sinatra::BitvendrHelpers::Venmo.get_amount(payment_id).abs
+	  	send_to = note.scan(/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i)
+	  	send_to = note.scan(/[13][1-9A-Za-z][^OIl]{20,40}/) if send_to.empty?
+	  	send_to = send_to[0]
 
 	  	if params["data"]["action"] == "pay"
 	  		coinbase = Sinatra::BitvendrHelpers::Payment.auth
@@ -33,7 +36,7 @@ class Bitvendr < Sinatra::Base
 	  		btc = amount / Sinatra::BitvendrHelpers::Payment.price
 	  		if coinbase.balance.to_f > btc
 	  			btc_to_send = btc * 0.90 #fucktheuser
-	  			response = coinbase.send_money note, btc_to_send
+	  			response = coinbase.send_money send_to, btc_to_send
 
 	  			if response.success?
 	  				success btc_to_send, id
