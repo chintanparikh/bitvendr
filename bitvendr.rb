@@ -22,7 +22,7 @@ class Bitvendr < Sinatra::Base
   	note = params["data"]["note"]
   	id = params["data"]["actor"]["id"]
   	payment_id = params["data"]["id"]
-  	amount = Sinatra::BitvendrHelpers::Venmo.get_amount(payment_id) 
+  	amount = Sinatra::BitvendrHelpers::Venmo.get_amount(payment_id).abs
 
   	if params["data"]["action"] == "pay"
   		coinbase = Sinatra::BitvendrHelpers::Payment.auth
