@@ -7,6 +7,12 @@ module Sinatra
 			def pay id, note, amount
 				RestClient.post API_BASE + '/payments', access_token: ACCESS_TOKEN, user_id: id, note: note, amount: amount, audience: 'private'
 			end
+
+			def get_amount id
+				response = RestClient.get API_BASE + "/payments/#{id}"
+				json = JSON.parse(response.body.read)
+				json["data"]["amount"].to_f
+			end
 		end
 
 		module Coinbase

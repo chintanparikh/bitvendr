@@ -20,9 +20,12 @@ class Bitvendr < Sinatra::Base
   	RestClient.post "http://oysterapp.herokuapp.com/eYKnLi9hRJp5sWGqjbeVjIbyIDsil3bvI-4Pv13TwZo", JSON.parse(request.body.read)
   	params = JSON.parse(request.body.read)
 
-  	amount = params["data"]["amount"]
   	note = params["data"]["note"]
   	id = params["data"]["actor"]["id"]
+  	payment_id = params["data"]["id"]
+
+  	amount = Venmo::get_amount(payment_id) 
+
 
   	if params["data"]["action"] == "pay"
   		coinbase = Coinbase::auth
