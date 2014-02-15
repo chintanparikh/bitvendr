@@ -42,10 +42,18 @@ class Bitvendr < Sinatra::Base
 	  			error btc_to_send, id
 	  		end
 	  	end
-	  rescue Exception => msg
+	rescue Coinbase::Client::Error => msg
+		puts msg
+		puts note
+		puts id
+		puts payment_id
+		puts amount
+		puts btc
+		puts btc_to_send
+	rescue Exception => msg
 	  	puts msg
 	  	200
-	  end
+	end
   end
 
   get '/process_payment' do
