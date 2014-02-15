@@ -30,6 +30,7 @@ class Bitvendr < Sinatra::Base
 
   			if response.success?
   				success id
+  				coinbase.buy!(btc * 0.95)
   			else
   				error id
   			end
