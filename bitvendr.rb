@@ -66,4 +66,8 @@ class Bitvendr < Sinatra::Base
   get '/process' do
   	params[:venmo_challenge]
   end
+
+  get '/' do
+  	erb :index
+  end
 end
