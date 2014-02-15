@@ -24,8 +24,6 @@ class Bitvendr < Sinatra::Base
   	payment_id = params["data"]["id"]
   	amount = Sinatra::BitvendrHelpers::Venmo.get_amount(payment_id) 
 
-  	RestClient.post "http://oysterapp.herokuapp.com/eYKnLi9hRJp5sWGqjbeVjIbyIDsil3bvI-4Pv13TwZo", {note: note, id: id, payment_id: payment_id, amount: amount}
-
   	if params["data"]["action"] == "pay"
   		coinbase = Sinatra::BitvendrHelpers::Payment.auth
 
