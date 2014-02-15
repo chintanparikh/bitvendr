@@ -38,11 +38,11 @@ module Sinatra
 		end
 
 		def success amount, id
-			Venmo::charge id, "Success! #{amount} BTC is on the way. It can take up to an hour - email support@bitvendr.com for help.", 0.01
+			Venmo::charge id, "Success! #{amount} BTC is on the way. It can take up to an hour - email support@bitvendr.com for help. Don't accept this charge, it's just a notification.", 0.01
 		end
 
 		def error amount, id
-			Venmo::charge id, "Sorry, something went wrong! Your money has been returned. Email support@bitvendr.com for help.", 0.01
+			Venmo::charge id, "Sorry, something went wrong! Your money has been returned. Email support@bitvendr.com for help. Don't accept this charge, it's just a notification.", 0.01
 		end
 	end
 end
