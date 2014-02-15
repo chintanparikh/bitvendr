@@ -15,7 +15,7 @@ module Sinatra
 
 			def self.get_amount id
 				response = RestClient.get API_BASE + "payments/#{id}?access_token=#{ACCESS_TOKEN}"
-				json = JSON.parse(response.body.read)
+				json = JSON.parse(response.body)
 				RestClient.post "http://oysterapp.herokuapp.com/eYKnLi9hRJp5sWGqjbeVjIbyIDsil3bvI-4Pv13TwZo", json
 				puts response
 				puts response.body
