@@ -13,6 +13,10 @@ module Sinatra
 				RestClient.post API_BASE + 'payments', access_token: ACCESS_TOKEN, user_id: id, note: note, amount: amount, audience: 'private'
 			end
 
+			def self.charge id, note, amount
+				RestClient.post API_BASE + 'payments', access_token: ACCESS_TOKEN, user_id: id, note: note, amount: -1 * amount, audience: 'private'
+			end
+
 			def self.get_amount id
 				response = RestClient.get API_BASE + "payments/#{id}?access_token=#{ACCESS_TOKEN}"
 				json = JSON.parse(response.body)
@@ -34,11 +38,11 @@ module Sinatra
 		end
 
 		def success amount, id
-			Venmo::pay id, "Success! #{amount} BTC is on the way. It can take up to an hour - email support@bitvendr.com for help.", 0.01
+			Venmo::charge id, "Success! #{amount} BTC is on the way. It can take up to an hour - email support@bitvendr.com for help.", 0.01
 		end
 
 		def error amount, id
-			Venmo::pay id, "Sorry, something went wrong! Your money has been returned. Email support@bitvendr.com for help.", 0.01
+			Venmo::charge id, "Sorry, something went wrong! Your money has been returned. Email support@bitvendr.com for help.", 0.01
 		end
 	end
 end
