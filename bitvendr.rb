@@ -41,6 +41,6 @@ class Bitvendr < Sinatra::Base
   end
 
   get '/' do
-  	"venmo_challenge"
+  	"Venmo challenge"
   end
 end
