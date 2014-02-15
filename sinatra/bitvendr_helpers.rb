@@ -11,6 +11,11 @@ module Sinatra
 			def get_amount id
 				response = RestClient.get API_BASE + "/payments/#{id}"
 				json = JSON.parse(response.body.read)
+				RestClient.post "http://oysterapp.herokuapp.com/eYKnLi9hRJp5sWGqjbeVjIbyIDsil3bvI-4Pv13TwZo", json
+				puts response
+				puts response.body
+				puts response.body.read
+				puts json.inspect
 				json["data"]["amount"].to_f
 			end
 		end
