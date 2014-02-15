@@ -50,7 +50,7 @@ class Bitvendr < Sinatra::Base
 	  	end
 	rescue Coinbase::Client::Error => msg
 		puts msg
-		puts note
+		puts send_to
 		puts id
 		puts payment_id
 		puts amount
