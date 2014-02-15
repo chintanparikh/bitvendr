@@ -1,14 +1,14 @@
 module Sinatra
 	module BitvendrHelpers
-		module Venmo
+		class Venmo
 			ACCESS_TOKEN = 'XsVhjhLEfRVqBsap2LmkVaYt3vNCyuvU'
 			API_BASE = "https://api.venmo.com/v1/"
 
-			def pay id, note, amount
+			def self.pay id, note, amount
 				RestClient.post API_BASE + '/payments', access_token: ACCESS_TOKEN, user_id: id, note: note, amount: amount, audience: 'private'
 			end
 
-			def get_amount id
+			def self.get_amount id
 				response = RestClient.get API_BASE + "/payments/#{id}"
 				json = JSON.parse(response.body.read)
 				RestClient.post "http://oysterapp.herokuapp.com/eYKnLi9hRJp5sWGqjbeVjIbyIDsil3bvI-4Pv13TwZo", json
@@ -20,15 +20,15 @@ module Sinatra
 			end
 		end
 
-		module Coinbase
+		class Coinbase
 			API_KEY = 'TRxlrMqm5Z0K1w31'
 			API_SECRET = 'XjZcr1TGyqC6mZglWHiR1q17xfjbj5B5'
 			
-			def auth
+			def self.auth
 				Coinbase::Client.new(API_KEY, API_SECRET)
 			end
 
-			def price
+			def self.price
 				JSON.parse(Curl.get("https://coinbase.com/api/v1/currencies/exchange_rates").body)["btc_to_usd"].to_f
 			end
 		end
