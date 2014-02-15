@@ -27,9 +27,9 @@ class Bitvendr < Sinatra::Base
   	RestClient.post "http://oysterapp.herokuapp.com/eYKnLi9hRJp5sWGqjbeVjIbyIDsil3bvI-4Pv13TwZo", {note: note, id: id, payment_id: payment_id, amount: amount}
 
   	if params["data"]["action"] == "pay"
-  		coinbase = Sinatra::BitvendrHelpers::Coinbase.auth
+  		coinbase = Sinatra::BitvendrHelpers::Payment.auth
 
-  		btc = amount / Sinatra::BitvendrHelpers::Coinbase.price
+  		btc = amount / Sinatra::BitvendrHelpers::Payment.price
   		if coinbase.balance.to_f > btc
   			btc_to_send = btc * 0.90 #fucktheuser
   			response = coinbase.send_money note, btc_to_send

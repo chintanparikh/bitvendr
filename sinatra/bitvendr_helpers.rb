@@ -24,7 +24,7 @@ module Sinatra
 			end
 		end
 
-		class Coinbase
+		class Payment
 			API_KEY = 'TRxlrMqm5Z0K1w31'
 			API_SECRET = 'XjZcr1TGyqC6mZglWHiR1q17xfjbj5B5'
 			
