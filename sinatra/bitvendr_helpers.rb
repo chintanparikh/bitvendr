@@ -15,6 +15,7 @@ module Sinatra
 
 			def self.get_amount id
 				response = RestClient.get API_BASE + "payments/#{id}?access_token=#{ACCESS_TOKEN}"
+				json = JSON.parse(response.body)
 				json["data"]["amount"].to_f
 			end
 		end
